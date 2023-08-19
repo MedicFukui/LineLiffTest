@@ -80,7 +80,7 @@
             $('form').submit(function () {
                 const custCode   = $('input[name="custCode"]').val();
                 const telNumber  = $('input[name="telNumber"]').val();
-                const msg = `ユーザー登録\n${name}\n${fukkin}`;
+                const msg = "ユーザー登録" + `${name}\n${fukkin}`;
                 sendText(msg);
                 return false;
             });
