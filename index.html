@@ -54,24 +54,31 @@
             });
         }
 
+　　    function replaceFullToHalf(str){
+  	　　return str.replace(/[！-～]/g, function(s){
+    	　　　　return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
+  	　　});
+	}
+	    
         const params = (new URL(document.location)).searchParams;
         const key = params.get('key');
 	    
         $(function () {         
             $('form').submit(function () {
 		var flag = 0;
-                if(document.form1.custCode.value.match(/[^0-9]+/)){
+		const custCode   = $('input[name="custCode"]').val();
+                const telNumber  = $('input[name="telNumber"]').val();
+                if(custCode.match(/[^0-9]+/)){
                 	flag = 1;
                 }
-            	if(document.form1.telNumber.value.match(/[^0-9]+/)){
+            	if(telNumber.match(/[^0-9]+/)){
                 	flag = 1;
             	}
             	if(flag){
 		        window.alert('数字以外が入力されています'); // 数字以外が入力された場合は警告ダイアログを表示
 		        return false; // 送信を中止		        
 		}
-                const custCode   = $('input[name="custCode"]').val();
-                const telNumber  = $('input[name="telNumber"]').val();
+
                 const msg = "ユーザー登録" + `\n${custCode}\n${telNumber}`;
                 sendText(msg);
                 return false;
