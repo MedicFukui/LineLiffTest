@@ -2,7 +2,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ユーザー登録</title>
+    <title>ユーザー登録_v0824</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
@@ -10,9 +10,9 @@
 <body>
 
     <form class="w-75 mx-auto" name = "form1">
-        <p class="mt-3">顧客コード_v0823b</p>
+        <p class="mt-3">ユーザーコード_v0823b</p>
         <div>
-            <input class="form-control w-100 mt-1" name="custCode" placeholder="" required>
+            <input class="form-control w-100 mt-1" name="userCode" placeholder="" required>
         </div>
         <p class="mt-3">医院様の代表電話番号(ハイフンなし)</p>
         <div>
@@ -66,20 +66,23 @@
         $(function () {         
             $('form').submit(function () {
 		var flag = 0;
-		const custCode   = replaceFullToHalf($('input[name="custCode"]').val());
+		const userCode   = replaceFullToHalf($('input[name="userCode"]').val());
                 const telNumber  = replaceFullToHalf($('input[name="telNumber"]').val());
-                if(custCode.match(/[^0-9]+/)){
+                
+		if(userCode.match(/[^0-9]+/)){
                 	flag = 1;
                 }
-            	if(telNumber.match(/[^0-9]+/)){
-                	flag = 1;
-            	}
+		    
+            	//if(telNumber.match(/[^0-9]+/)){
+                //	flag = 1;
+            	//}
+		    
             	if(flag){
 		        window.alert('数字以外が入力されています'); // 数字以外が入力された場合は警告ダイアログを表示
 		        return false; // 送信を中止		        
 		}
 
-                const msg = "ユーザー登録" + `\n${custCode}\n${telNumber}`;
+                const msg = "ユーザー登録" + `\n${userCode}\n${telNumber}`;
                 sendText(msg);
                 return false;
             });
